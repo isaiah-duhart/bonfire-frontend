@@ -24,9 +24,8 @@ function GroupQuestionPage() {
 	const { data, isPending, error } = useQuery({
 		queryKey: ['group-responses'],
 		queryFn: async () => {
-			console.log(`${API_URL}/group-responses/${groupQuestionId}`)
 			const response = await fetch(
-				`${API_URL}/api/group-responses/${groupQuestionId}`,
+				`/api/group-responses/${groupQuestionId}`,
 				{
 					method: 'GET',
 					headers: { Authorization: `Bearer ${jwt}` },
@@ -42,7 +41,7 @@ function GroupQuestionPage() {
 
 	const submitResponseMutation = useMutation({
 		mutationFn: async ({ groupQuestionId, responseText }) => {
-			const response = await fetch(`${API_URL}/api/group-responses`, {
+			const response = await fetch(`/api/group-responses`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

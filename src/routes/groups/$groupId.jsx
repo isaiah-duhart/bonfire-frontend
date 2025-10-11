@@ -21,7 +21,7 @@ function GroupDetailPage() {
     mutationFn: async ({groupId}) => {
         const today = new Date()
         
-        const response = await fetch(`${API_URL}/api/group-questions`, {
+        const response = await fetch(`/api/group-questions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

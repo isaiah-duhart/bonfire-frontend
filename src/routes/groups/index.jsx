@@ -20,7 +20,7 @@ function GroupsPage() {
     const { data, isPending, error } = useQuery({
         queryKey: ['groups'],
         queryFn: async () => {
-        const response = await fetch(`${API_URL}/api/groups`, {
+        const response = await fetch(`/api/groups`, {
             method: 'GET',
             headers: {'Authorization': `Bearer ${jwt}`}
         })
@@ -35,7 +35,7 @@ function GroupsPage() {
         mutationFn: async ({ group_name, member_emails }) => {
             console.log(JSON.stringify({group_name, member_emails}))
             console.log(jwt)
-            const response = await fetch(`${API_URL}/api/groups`, {
+            const response = await fetch(`/api/groups`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
