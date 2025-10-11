@@ -13,6 +13,7 @@ dist-ssr
 *.local
 *.gen.*
 .tanstack
+.env
 
 # Editor directories and files
 .vscode/*

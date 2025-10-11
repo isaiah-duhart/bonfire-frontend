@@ -1,0 +1,12 @@
+span {
+    padding: 0;
+    margin: 0;
+}
+
+.own-response {
+    background-color: #e25822;
+}
+
+.other-response {
+    background-color: #FBB741;
+}

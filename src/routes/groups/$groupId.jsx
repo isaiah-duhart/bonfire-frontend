@@ -58,10 +58,11 @@ function GroupDetailPage() {
         <h2>Group Questions Today!</h2>
         <ul> 
             {groupQuestions.map((groupQuestion) => (
-                <GroupQuestionCard 
-                    key={groupQuestion.id}
-                    groupQuestion={groupQuestion}
-                />
+                <li key={groupQuestion.id}>
+                    <GroupQuestionCard 
+                        groupQuestion={groupQuestion}
+                    />
+                </li>
             ))}
         </ul>
         </div>

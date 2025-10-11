@@ -7,7 +7,7 @@ function App() {
   const navigate = useNavigate()
   
   useEffect (() => {
-    jwt ? navigate({ to: '/groups' }) : navigate({ to: '/login' })
+    jwt ? navigate({ to: '/groups' }) : navigate({ to: '/landing-page' })
   }, [jwt, navigate])
 
   console.log("Mounted app")
