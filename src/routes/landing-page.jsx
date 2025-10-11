@@ -19,7 +19,7 @@ export default function LandingPage() {
 
 	const createAccountMutation = useMutation({
 		mutationFn: async ({ name, birthday, email, password }) => {
-			let response = await fetch(`${API_URL}/api/users`, {
+			let response = await fetch(`/api/users`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ name, birthday, email, password }),
