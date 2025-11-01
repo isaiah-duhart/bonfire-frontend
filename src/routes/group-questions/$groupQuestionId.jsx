@@ -10,6 +10,8 @@ import { API_URL } from '../../config'
 import { useAuth } from '../../context/AuthContext'
 import GroupResponseCard from '../../components/GroupResponseCard'
 
+import '../../styles/groupResponsePage.css'
+
 export const Route = createFileRoute('/group-questions/$groupQuestionId')({
 	component: GroupQuestionPage,
 })
@@ -25,7 +27,7 @@ function GroupQuestionPage() {
 		queryKey: ['group-responses'],
 		queryFn: async () => {
 			const response = await fetch(
-				`/api/group-responses/${groupQuestionId}`,
+				`${API_URL}/api/group-responses/${groupQuestionId}`,
 				{
 					method: 'GET',
 					headers: { Authorization: `Bearer ${jwt}` },
@@ -41,7 +43,7 @@ function GroupQuestionPage() {
 
 	const submitResponseMutation = useMutation({
 		mutationFn: async ({ groupQuestionId, responseText }) => {
-			const response = await fetch(`/api/group-responses`, {
+			const response = await fetch(`${API_URL}/api/group-responses`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
