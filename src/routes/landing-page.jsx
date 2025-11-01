@@ -19,7 +19,7 @@ export default function LandingPage() {
 
 	const createAccountMutation = useMutation({
 		mutationFn: async ({ name, birthday, email, password }) => {
-			let response = await fetch(`/api/users`, {
+			let response = await fetch(`${API_URL}/api/users`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ name, birthday, email, password }),
@@ -105,11 +105,10 @@ export default function LandingPage() {
 							<div className='input-bundle'>
 								<label>BIRTHDAY</label>
 								<input
-									type='text'
+									type='date'
 									minLength='10'
 									maxLength='10'
 									id='birthday'
-									placeholder='yyyy-mm-dd'
 									name='birthday'
 									required
 								/>
@@ -119,7 +118,7 @@ export default function LandingPage() {
 							<div className='input-bundle'>
 								<label id='password'>PASSWORD</label>
 								<input
-									type='text'
+									type='password'
 									// minLength='8'
 									maxLength='255'
 									id='password'
@@ -130,7 +129,7 @@ export default function LandingPage() {
 							<div className='input-bundle'>
 								<span>CONFIRM PASSWORD</span>
 								<input
-									type='text'
+									type='password'
 									// minLength='8'
 									maxLength='255'
 									id='confirm_password'
