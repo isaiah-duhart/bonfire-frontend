@@ -17,7 +17,7 @@ function LoginPage() {
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState(null)
 
-	console.log('mounting')
+	console.log(`api url is ${API_URL}`)
 
 	const loginMutation = useMutation({
 		mutationFn: async ({ email, password }) => {
