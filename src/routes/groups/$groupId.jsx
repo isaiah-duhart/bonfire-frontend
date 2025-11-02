@@ -10,61 +10,79 @@ export const Route = createFileRoute('/groups/$groupId')({
 })
 
 function GroupDetailPage() {
-    const { groupId } = Route.useParams()
-    console.log('Params:', groupId)
+	const { groupId } = Route.useParams()
 
-    const { jwt } = useAuth()
-    const [groupQuestions, setGroupQuestions] = useState(null)
-    const [error, setError] = useState(null)
+	const { jwt } = useAuth()
+	const [groupQuestions, setGroupQuestions] = useState(null)
+	const [showAll, setShowAll] = useState(false)
+	const [error, setError] = useState(null)
 
-    const getGroupQuestionsMutation = useMutation({
-    mutationFn: async ({groupId}) => {
-        const today = new Date()
-        
-        const response = await fetch(`${API_URL}/api/group-questions`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${jwt}`
-            },
-            body: JSON.stringify({"group_id": groupId, "date": today.toISOString().split('T')[0]})
-        })
-        if (!response.ok) {
-            throw new Error('Fetch group questions failed')
-        }
-        return response.json()
-    },
-    onSuccess: (data) => {
-        setGroupQuestions(data)
-    },
-    onError: (error) => {
-        setError(error)
-    }
-    })
+	const getGroupQuestionsMutation = useMutation({
+		mutationFn: async ({ groupId }) => {
+			const today = new Date()
+			let response
 
-    useEffect(() => {
-        getGroupQuestionsMutation.mutate({groupId})
-    }, [groupId])
-    
+			if (!showAll) {
+				response = await fetch(`${API_URL}/api/group-questions`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${jwt}`,
+					},
+					body: JSON.stringify({
+						group_id: groupId,
+						date: today.toISOString().split('T')[0],
+					}),
+				})
+			} else {
+				response = await fetch(`${API_URL}/api/group-questions/${groupId}`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${jwt}`,
+					},
+				})
+			}
 
-    if (error) return <p>Error loading group questions {error.message}</p>
+			if (!response.ok) {
+				throw new Error('Fetch group questions failed')
+			}
+			return response.json()
+		},
+		onSuccess: (data) => {
+			setGroupQuestions(data)
+		},
+		onError: (error) => {
+			setError(error)
+		},
+	})
 
-    if (!groupQuestions) return <p>Loading...</p>
+	useEffect(() => {
+		getGroupQuestionsMutation.mutate({ groupId })
+	}, [groupId, showAll])
 
-    console.log(groupQuestions)
+	const changeShowAll = () => {
+		console.log(`Changing showAll to ${!showAll}`)
+		setShowAll(!showAll)
+	}
+	if (error) return <p>Error loading group questions {error.message}</p>
 
-    return (
-        <div>
-        <h2>Group Questions Today!</h2>
-        <ul> 
-            {groupQuestions.map((groupQuestion) => (
-                <li key={groupQuestion.id}>
-                    <GroupQuestionCard 
-                        groupQuestion={groupQuestion}
-                    />
-                </li>
-            ))}
-        </ul>
-        </div>
-    )
+	if (!groupQuestions) return <p>Loading...</p>
+
+	console.log(groupQuestions)
+
+	return (
+		<div>
+			<h2>Group Questions!</h2>
+			<ul>
+				{groupQuestions.map((groupQuestion) => (
+					<GroupQuestionCard
+						key={groupQuestion.id}
+						groupQuestion={groupQuestion}
+					/>
+				))}
+			</ul>
+			<button onClick={changeShowAll}>ALL QUESTIONS</button>
+		</div>
+	)
 }
