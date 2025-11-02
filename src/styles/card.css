@@ -3,10 +3,14 @@ span {
     margin: 0;
 }
 
-.own-response {
+.own {
     background-color: #e25822;
 }
 
-.other-response {
+.other {
     background-color: #FBB741;
+    color: #242424;
+    a:hover {
+      color: #e25822;
+    }
 }
