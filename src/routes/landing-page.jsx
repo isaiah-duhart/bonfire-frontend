@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext'
 import { API_URL } from '../config'
 import img from '../assets/bonfire.jpg'
 
-import '../index.css'
+import '../styles/index.css'
 
 export const Route = createFileRoute('/landing-page')({
 	component: LandingPage,

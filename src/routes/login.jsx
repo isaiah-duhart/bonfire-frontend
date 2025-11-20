@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useState } from 'react'
-import img from '../assets/bonfire.jpg'
-
-import '../index.css'
 import { useMutation } from '@tanstack/react-query'
 import { API_URL } from '../config'
 import { useAuth } from '../context/AuthContext'
+
+import img from '../assets/bonfire.jpg'
+import '../styles/index.css'
 
 export const Route = createFileRoute('/login')({
 	component: LoginPage,

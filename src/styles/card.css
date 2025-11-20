@@ -1,16 +1,58 @@
 span {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
-.own {
-    background-color: #e25822;
-}
-
-.other {
-    background-color: #FBB741;
-    color: #242424;
-    a:hover {
-      color: #e25822;
+.response-bubble {
+    max-width: 70%;
+    flex: 1;
+    
+    .metadata {
+        padding: 0 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
+}
+
+.own-bubble {
+    margin-left: auto;
+}
+
+.other-bubble {
+    margin-right: auto;
+}
+
+.message {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+/* Own messages: deep orange */
+.own-message {
+  background-color: #e25822;
+  color: #fff;
+}
+
+/* Other messages: bright yellow */
+.other-message {
+  background-color: #FBB741;
+  color: #242424;
+}
+
+/* Timestamp styling */
+.timestamp {
+  font-size: 0.7rem;
+  color: #ffe5b4; /* softer orange/yellow for subtlety */
+  text-align: right;
+}
+
+/* Author styling */
+.author {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff3cd; /* pale yellow for contrast */
+  margin-bottom: 4px;
 }
