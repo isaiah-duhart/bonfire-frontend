@@ -1,0 +1,75 @@
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-button {
+  border-radius: 0.25rem;       /* rounded */
+  padding: 0.5rem 1rem;         /* py-2 px-4 */
+  font-weight: 700;             /* font-bold */
+  color: #fff;                  /* text-white */
+  background-color: #1f2937;    /* bg-gray-800 */
+  display: flex;                /* flex */
+  align-items: center;          /* items-center */
+}
+
+.dropdown-button svg {
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dropdown-button svg.rotate-0 {
+  transform: rotate(0deg);
+}
+
+.dropdown-button svg.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 20;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  margin: 0.25rem 0;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dropdown-list {
+  color: #374151; /* text-gray-700 */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-list > * + * {
+  border-top: 1px solid #e5e7eb; /* divide-y divide-gray-200 */
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.25rem;   /* py-3 px-5 */
+  white-space: nowrap;        /* prevent wrapping */
+  text-decoration: none;      /* no underline by default */
+  color: inherit;             /* inherit text color */
+  display: block;             /* fill li area */
+  background: none;           /* reset default button styles */
+  border: none;               /* remove default button border */
+  text-align: left;           /* align text like a menu item */
+  cursor: pointer;            /* pointer cursor */
+}
+
+.dropdown-item:hover {
+  text-decoration: underline; /* underline on hover */
+  background-color: #f3f4f6;  /* subtle gray highlight (like Tailwind's gray-100) */
+}
